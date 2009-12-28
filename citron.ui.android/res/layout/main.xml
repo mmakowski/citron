@@ -6,7 +6,10 @@
     >
 <TextView  
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+    android:layout_height="wrap_content" android:text="@string/expression"/>
+<EditText android:layout_height="wrap_content" android:id="@+id/expression" android:layout_width="fill_parent" android:inputType="textMultiLine"></EditText>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/calculate" android:layout_gravity="center_horizontal" android:id="@+id/calculate"></Button><TextView android:layout_height="wrap_content" android:text="@string/result" android:layout_width="fill_parent"></TextView>
+<TextView android:layout_height="wrap_content" android:id="@+id/result" android:layout_width="fill_parent" android:textStyle="bold" android:inputType="textMultiLine"></TextView>
+
+
 </LinearLayout>
