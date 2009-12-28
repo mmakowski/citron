@@ -1,5 +1,9 @@
 package com.mmakowski.citron.ui.android;
 
+import com.mmakowski.citron.expression.Expression;
+import com.mmakowski.citron.expression.Value;
+import com.mmakowski.citron.parser.Parser;
+
 
 /**
  * A thread that calculates the expression. 
@@ -7,21 +11,24 @@ package com.mmakowski.citron.ui.android;
  */
 class CalculationThread extends Thread {
 	ExpressionEntry activity;
-	String expression;
+	String expressionStr;
 	
-	CalculationThread(ExpressionEntry activity, String expression) {
+	CalculationThread(ExpressionEntry activity, String expressionStr) {
 		this.activity = activity;
-		this.expression = expression;
+		this.expressionStr = expressionStr;
 	}
 	
 	@Override
 	public void run() {
+		Parser parser = new Parser();
+		Expression<Value> expression = parser.parse(expressionStr);
+		Value value = null;
 		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// ignore
+			value = expression.evaluate();
+		} catch (Throwable t) {
+			activity.setResultFromNonUIThread("ERROR: " + t.getMessage());
 		}
-		activity.setResultFromNonUIThread("dupa");
+		activity.setResultFromNonUIThread(value.toString());
 	}
 		
 }
