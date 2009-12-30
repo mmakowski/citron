@@ -13,6 +13,11 @@ public class Addition implements FunctionApplication<DecimalNumber> {
 		this.op2 = op2;
 	}
 	
+	// for unit testing
+	Addition(String op1, String op2) {
+		this(new DecimalNumber(op1), new DecimalNumber(op2));
+	}
+	
 	@Override
 	public DecimalNumber evaluate() {
 		return new DecimalNumber(op1.evaluate().toBigDecimal().add(op2.evaluate().toBigDecimal()));
